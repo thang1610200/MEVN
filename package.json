@@ -1,0 +1,40 @@
+{
+  "name": "thang",
+  "version": "1.0.0",
+  "description": "MEVN",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node server/index",
+    "prettier": "prettier --write ./**/*.js",
+    "build:client": "webpack --mode=production",
+    "build:server": "babel server/ --out-dir dist/ --copy-files",
+    "build": "npm run build:client && npm run build:server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thang1610200/MEVN.git"
+  },
+  "author": "thang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thang1610200/MEVN/issues"
+  },
+  "homepage": "https://github.com/thang1610200/MEVN#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/node": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-middleware": "^6.0.1"
+  }
+}
