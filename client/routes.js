@@ -4,6 +4,8 @@ import Login from '@pages/Login.vue'
 
 import Register from '@pages/Register.vue'
 
+import Home from '@pages/Home.vue'
+
 
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
@@ -13,6 +15,9 @@ const router = VueRouter.createRouter({
     },{
     path: '/auth/register',
     component: Register
+    },{
+        path: '/',
+        component: Home
     }]
  });
 
