@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/thang1610200/MEVN#readme",
   "dependencies": {
+    "@vee-validate/rules": "^4.7.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.1",
+    "vee-validate": "^4.7.3",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

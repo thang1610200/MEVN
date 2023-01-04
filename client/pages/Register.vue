@@ -4,13 +4,61 @@
             <h2 class="text-center text-4xl text-amber-600">Register</h2>
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
-                <input type="text" class="w-full bg-slate-300 p-2 focus:outline-none mb-3" placeholder="Enter your name">
-                <input type="text" class="w-full bg-slate-300 p-2 focus:outline-none mb-3" placeholder="Enter your email">
-                <input type="text" class="w-full bg-slate-300 p-2 focus:outline-none" placeholder="Enter your password">
-                <button class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
+                <text-input
+                type="text"
+                name="name"
+                :value="model.name"
+                v-model="model.name"
+                placeholder="Enter your name"
+                v-on:update:value="model.name = $event"
+                rules="required"
+                />
+
+                <text-input
+                type="email"
+                name="email"
+                :value="model.email"
+                v-model="model.email"
+                placeholder="Enter your email"
+                v-on:update:value="model.email= $event"
+                rules="required|email"
+                />
+
+                <text-input
+                type="password"
+                name="password"
+                :value="model.password"
+                v-model="model.password"
+                placeholder="Enter your password"
+                v-on:update:value="model.password = $event"
+                rules="required|min:6"
+                />
+
+                <button @click="register" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
                     Sign in
                 </button>
             </div>
         </div>
     </div>
 </template>
+
+<script>    
+    export default {
+    data: () => ({
+        model: {
+            name: "",
+            email: "",
+            password: ""
+        }
+    }),
+    methods: {
+        register() {
+            this.$validator.validate().then(isValid => {
+                if(!isValid){
+                    return;
+                }
+            })
+        }
+    }
+}
+</script>

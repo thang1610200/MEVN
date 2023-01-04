@@ -7,6 +7,7 @@ import webpackConfig from '../webpack.config'
 import WebPack from 'webpack'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 import  path  from 'path'
+
 const app = Express()
 
 Mongoose.set('strictQuery', true)

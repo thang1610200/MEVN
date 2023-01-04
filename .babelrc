@@ -4,10 +4,11 @@
     ],
     "plugins": [
         ["module-resolver",{
-            "root":["/"],
+            "root":["./"],
             "alias":{
                 "@":"./",
                 "@pages":"./client/pages",
+                "@components":"./client/components",
                 "@controllers":"./server/controllers",
                 "@config":"./server/config/default",
                 "@routes":"./server/routes"
