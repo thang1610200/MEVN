@@ -1,15 +1,18 @@
 <template>
-   <Field :rules="rules" 
-   :type="type" 
-   :name="name" 
-   class="w-full bg-slate-300 p-2 focus:outline-none mb-3" 
-   :placeholder="placeholder" 
-   :value="value"
-    @input="$emit('update:value', $event.target.value)"
-    @focus="$emit('focus')"
-    @blur="$emit('blue')"
-    @change="$emit('update:value', $event.target.value)"
-    />
+    <div class="mb-3">
+        <Field :rules="rules" 
+        :type="type" 
+        :name="name" 
+        class="w-full bg-slate-300 p-2 focus:outline-none" 
+        :placeholder="placeholder" 
+        :value="value"
+            @input="$emit('update:value', $event.target.value)"
+            @focus="$emit('focus')"
+            @blur="$emit('blue')"
+            @change="$emit('update:value', $event.target.value)"/>
+
+        <span v-if="error" class="text-xs text-red-400">{{ error }}</span>
+    </div>
 </template>
 
 <script>
@@ -36,6 +39,10 @@
             },
             rules:{
                 type: String
+            },
+            error: {
+                type: String,
+                required: false
             }
         },
         components:{

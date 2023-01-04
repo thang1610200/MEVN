@@ -4,6 +4,8 @@
             <h2 class="text-center text-4xl text-amber-600">Register</h2>
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
+
+            <Form v-slot="{ validate, errors }">
                 <text-input
                 type="text"
                 name="name"
@@ -12,6 +14,7 @@
                 placeholder="Enter your name"
                 v-on:update:value="model.name = $event"
                 rules="required"
+                :error="errors.name"
                 />
 
                 <text-input
@@ -22,6 +25,7 @@
                 placeholder="Enter your email"
                 v-on:update:value="model.email= $event"
                 rules="required|email"
+                :error="errors.email"
                 />
 
                 <text-input
@@ -32,17 +36,20 @@
                 placeholder="Enter your password"
                 v-on:update:value="model.password = $event"
                 rules="required|min:6"
+                :error="errors.password"
                 />
 
-                <button @click="register" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
+                <button @click="validate" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
                     Sign in
                 </button>
+            </Form>
             </div>
         </div>
     </div>
 </template>
 
-<script>    
+<script>   
+    import {Form} from 'vee-validate';
     export default {
     data: () => ({
         model: {
@@ -51,14 +58,8 @@
             password: ""
         }
     }),
-    methods: {
-        register() {
-            this.$validator.validate().then(isValid => {
-                if(!isValid){
-                    return;
-                }
-            })
-        }
+    components: {
+        Form
     }
 }
 </script>
