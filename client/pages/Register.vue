@@ -39,7 +39,7 @@
                 :error="errors.password"
                 />
 
-                <button @click="validate" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
+                <button @click="validate($event,register)" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
                     Sign in
                 </button>
             </Form>
@@ -50,6 +50,8 @@
 
 <script>   
     import {Form} from 'vee-validate';
+    import {POST_REGISTER} from '../store/auth/actions.js'
+
     export default {
     data: () => ({
         model: {
@@ -60,6 +62,11 @@
     }),
     components: {
         Form
+    },
+    methods: {
+        register() {
+            this.$store.dispatch(POST_REGISTER,this.model);
+        }
     }
 }
 </script>

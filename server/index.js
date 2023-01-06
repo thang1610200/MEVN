@@ -7,8 +7,11 @@ import webpackConfig from '../webpack.config'
 import WebPack from 'webpack'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 import  path  from 'path'
+import bodyParser from 'body-parser'
 
 const app = Express()
+
+app.use(bodyParser.json());
 
 Mongoose.set('strictQuery', true)
 Mongoose.connect(config.databaseUrl)
