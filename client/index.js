@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import './styles/main.css'
 import Main from './pages/Main.vue'
 import router from './routes'
 import TextInput from '@/client/components/TextInput.vue'

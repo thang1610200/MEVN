@@ -5,7 +5,7 @@
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
 
-            <Form v-slot="{ validate, errors }">
+            <Form v-slot="{ handleSubmit, errors }">
                 <text-input
                 type="text"
                 name="name"
@@ -39,7 +39,7 @@
                 :error="errors.password"
                 />
 
-                <button @click="validate($event,register)" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
+                <button @click="handleSubmit($event,register)" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
                     Sign in
                 </button>
             </Form>

@@ -1,12 +1,12 @@
-import mutation from './mutations.js'
+import mutations from './mutations.js'
 
-import getter from './getters.js'
+import getters from './getters.js'
 
-import action from './actions.js'
+import actions from './actions.js'
 
 export default {
     state: {},
-    getter,
-    mutation,
-    action
+    getters,
+    mutations,
+    actions
 }
