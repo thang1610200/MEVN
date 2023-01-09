@@ -5,7 +5,7 @@
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
 
-            <Form v-slot="{ handleSubmit, errors }">
+            <Form v-slot="{ handleSubmit,errors }">
                 <text-input
                 type="text"
                 name="name"
@@ -39,9 +39,11 @@
                 :error="errors.password"
                 />
 
-                <button @click="handleSubmit($event,register)" class="w-full mt-3 bg-green-300 py-3 text-2xl font-semibold text-white rounded-sm hover:bg-green-100">
-                    Sign in
-                </button>
+                <btn 
+                label="Sign Up"
+                :disbled="loading"
+                :loading="loading"
+                @click="handleSubmit($event,register)" />
             </Form>
             </div>
         </div>
@@ -54,6 +56,7 @@
 
     export default {
     data: () => ({
+        loading: false,
         model: {
             name: "",
             email: "",
@@ -65,7 +68,15 @@
     },
     methods: {
         register() {
-            this.$store.dispatch(POST_REGISTER,this.model);
+            this.toogleLoading();
+            this.$store.dispatch(POST_REGISTER,this.model)
+                .then(() => {
+                    this.toogleLoading();
+                    this.$router.push('/');
+                })
+        },
+        toogleLoading() {
+            this.loading = !this.loading;
         }
     }
 }

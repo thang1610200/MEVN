@@ -30,6 +30,8 @@ app.use(WebPackDevMiddleWare(complier));
 
 app.use(WebpackHotMiddleware(complier,{hot: true, publicPath: webpackConfig.output.publicPath}));
 
+app.use(Express.static(path.resolve(__dirname,'public')));
+
 app.get('/', (req,res) => {
     res.sendFile(path.resolve(__dirname,'public/index.html'));
 })
