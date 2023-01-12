@@ -5,7 +5,7 @@
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
 
-            <Form v-slot="{ handleSubmit,errors }">
+            <Form v-slot="{ handleSubmit,errors }" ref="myForm">
                 <text-input
                 type="text"
                 name="name"
@@ -52,7 +52,7 @@
 
 <script>   
     import {Form} from 'vee-validate';
-    import {POST_REGISTER} from '../store/auth/actions.js'
+    import {POST_REGISTER, SET_AUTH} from '../store/auth/actions.js'
 
     export default {
     data: () => ({
@@ -70,9 +70,18 @@
         register() {
             this.toogleLoading();
             this.$store.dispatch(POST_REGISTER,this.model)
-                .then(() => {
+                .then(response => {
+                    this.toogleLoading()
+
+                    localStorage.setItem('auth', JSON.stringify(response.data))
+                    this.$store.commit(SET_AUTH,response.data)
+
+                    this.$router.push('/')
+                })
+                .catch(error => {
                     this.toogleLoading();
-                    this.$router.push('/');
+
+                    this.$refs.myForm.setFieldError('email',error.response.data['email']);
                 })
         },
         toogleLoading() {

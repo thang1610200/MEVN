@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import Randomstring from "randomstring";
 import bcrypt from 'bcryptjs'
-import mail from "@fullstackjs/mail";
+import mail from '@fullstackjs/mail';
 import config from "../config/default.js"
+import jwt from "jsonwebtoken"
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -31,5 +32,13 @@ UserSchema.post('save', async function() {
     })
     .send()
 })
+
+UserSchema.methods.generateToken = function() {
+    return jwt.sign({id: this._id},config.jwt_secret);
+}
+
+UserSchema.methods.comparePass = function(plaintext){
+    return bcrypt.compareSync(plaintext,this.password);
+}
 
 export default mongoose.model('User',UserSchema);
