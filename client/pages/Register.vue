@@ -53,10 +53,11 @@
 <script>   
     import {Form} from 'vee-validate';
     import {POST_REGISTER, SET_AUTH} from '../store/auth/actions.js'
+    import mixin from '../mixins/form.js'
 
     export default {
+    mixins: [mixin],
     data: () => ({
-        loading: false,
         model: {
             name: "",
             email: "",
@@ -83,9 +84,6 @@
 
                     this.$refs.myForm.setFieldError('email',error.response.data['email']);
                 })
-        },
-        toogleLoading() {
-            this.loading = !this.loading;
         }
     }
 }
