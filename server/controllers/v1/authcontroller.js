@@ -28,7 +28,20 @@ const register = async (req, res) => {
     return res.status(201).json({ user, token });
 }
 
+
+const forgotpassword = async (req,res) => {
+    const {email} = req.body;
+
+
+    const user = await User.findOne({ email });
+
+    await user.forgotPass();
+
+    return res.json({message: 'Password has reset'});
+}
+
 export default {
     login,
     register,
+    forgotpassword
 }

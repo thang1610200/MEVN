@@ -28,6 +28,10 @@
                 :error="errors.password"
                 />
 
+                <div class="my-5">
+                    <router-link to="/auth/passwords/email" class="text-black text-center">Forgot Password?</router-link>
+                </div>
+
                 <btn 
                 label="Sign In"
                 :disbled="loading"
@@ -41,7 +45,7 @@
 
 <script>   
     import {Form} from 'vee-validate';
-    import {POST_LOGIN, SET_AUTH} from '../store/auth/actions.js'
+    import {POST_LOGIN} from '../store/auth/actions.js'
     import mixin from '../mixins/form.js'
 
     export default {
@@ -62,10 +66,7 @@
                 .then(response => {
                     this.toogleLoading()
 
-                    localStorage.setItem('auth', JSON.stringify(response.data))
-                    this.$store.commit(SET_AUTH,response.data)
-
-                    this.$router.push('/')
+                    this.setAuth(response.data);
                 })
                 .catch(error => {
                     this.toogleLoading();

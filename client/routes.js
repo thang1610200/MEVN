@@ -6,6 +6,8 @@ import Register from '@pages/Register.vue'
 
 import Home from '@pages/Home.vue'
 
+import ForgotPassword from '@pages/ForgotPassword.vue'
+
 
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
@@ -18,6 +20,9 @@ const router = VueRouter.createRouter({
     },{
         path: '/',
         component: Home
+    },{
+        path: '/auth/passwords/email',
+        component: ForgotPassword
     }]
  });
 

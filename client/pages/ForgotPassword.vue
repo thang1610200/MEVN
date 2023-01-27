@@ -1,22 +1,11 @@
 <template>
     <div class="container my-12 w-full h-12 mx-auto">
         <div class="max-w-sm mx-auto h-12">
-            <h2 class="text-center text-4xl text-amber-600">Register</h2>
+            <h2 class="text-center text-4xl text-amber-600">Forgot Password</h2>
 
             <div class="bg-white drop-shadow rounded-sm mt-5 p-8">
 
             <Form v-slot="{ handleSubmit,errors }" ref="myForm">
-                <text-input
-                type="text"
-                name="name"
-                :value="model.name"
-                v-model="model.name"
-                placeholder="Enter your name"
-                v-on:update:value="model.name = $event"
-                rules="required"
-                :error="errors.name"
-                />
-
                 <text-input
                 type="email"
                 name="email"
@@ -28,22 +17,11 @@
                 :error="errors.email"
                 />
 
-                <text-input
-                type="password"
-                name="password"
-                :value="model.password"
-                v-model="model.password"
-                placeholder="Enter your password"
-                v-on:update:value="model.password = $event"
-                rules="required|min:6"
-                :error="errors.password"
-                />
-
                 <btn 
-                label="Sign Up"
+                label="Send Password Reset Link"
                 :disbled="loading"
                 :loading="loading"
-                @click="handleSubmit($event,register)" />
+                @click="handleSubmit($event,forgot)" />
             </Form>
             </div>
         </div>
@@ -52,14 +30,13 @@
 
 <script>   
     import {Form} from 'vee-validate';
-    import {POST_REGISTER} from '../store/auth/actions.js'
+    import {POST_FORGOT_PASSWORD} from '../store/auth/actions.js'
     import mixin from '../mixins/form.js'
 
     export default {
     mixins: [mixin],
     data: () => ({
         model: {
-            name: "",
             email: "",
             password: ""
         }
@@ -68,13 +45,13 @@
         Form
     },
     methods: {
-        register() {
+        forgot() {
             this.toogleLoading();
-            this.$store.dispatch(POST_REGISTER,this.model)
+            this.$store.dispatch(POST_FORGOT_PASSWORD,this.model)
                 .then(response => {
                     this.toogleLoading()
 
-                    this.setAuth(response.data);
+                    this.$router.push('/')
                 })
                 .catch(error => {
                     this.toogleLoading();

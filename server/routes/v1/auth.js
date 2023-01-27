@@ -9,4 +9,6 @@ authRouter.post('/login',LoginSchema, authController.login)
 
 authRouter.post('/register',RegisterSchema,authController.register)
 
+authRouter.post('/passwords/email',authController.forgotpassword)
+
 export default authRouter
